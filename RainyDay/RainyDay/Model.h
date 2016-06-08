@@ -8,12 +8,12 @@
 class Vertex;
 using namespace DirectX;
 
-struct DLL_API PreLoadedData {
+struct PreLoadedData {
 	std::vector<Vertex>		vertices;
 	std::vector<WORD>			indices;
 };
 
-class DLL_API Model :public Object
+class Model :public Object
 {
 public:
 	Model();

@@ -6,7 +6,6 @@
 #include "Vertex.h"
 #include "WICTextureLoader.h"
 #include "ConstVars.h"
-#include "VanishingBlock.h"
 #include "UIModel.h"
 #include "Scene.h"
 

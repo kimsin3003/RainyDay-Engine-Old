@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "MainScene.h"
 #include "InputClass.h"
-#include "GameScene.h"
 #include "ConstVars.h"
 #include "UISprite.h"
 
@@ -52,7 +51,7 @@ bool MainScene::Update(float dt, InputClass& input, Camera& camera)
 
 	if (input.IsKeyDown(VK_SPACE))
 	{
-		SystemClass::GetInstance()->SetScene(new GameScene());
+		SystemClass::GetInstance()->SetScene(new MainScene());
 		return false;
 	}
 	return true;

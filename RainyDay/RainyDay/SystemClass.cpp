@@ -3,11 +3,9 @@
 #include "SystemClass.h"
 #include "ConstVars.h"
 #include "Camera.h"
-#include "VanishingBlock.h"
 #include "Scene.h"
 #include "Renderer.h"
 #include "InputClass.h"
-#include "GameScene.h"
 
 SystemClass* SystemClass::instance = nullptr;
 

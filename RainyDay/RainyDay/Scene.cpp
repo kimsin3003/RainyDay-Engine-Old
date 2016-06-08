@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include <windows.h>
 #include "Scene.h"
-#include "VanishingBlock.h"
 #include <algorithm> 
 #include "ConstVars.h"
 
