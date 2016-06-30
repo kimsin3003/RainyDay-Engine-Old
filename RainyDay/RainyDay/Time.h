@@ -2,15 +2,15 @@
 
 #include <Windows.h>
 
-class CMyTime
+class DLL_API Time
 {
 	bool		m_bUseQPF;
 	float		m_fElapsedTime;
 	LONGLONG	m_llQPFTicksPerSec;
 	LONGLONG	m_llLastElapsedTime;
 public:
-	CMyTime(void);
-	virtual ~CMyTime(void);
+	Time(void);
+	virtual ~Time(void);
 
 	inline float GetElapsedTime() const
 	{ return m_fElapsedTime; };

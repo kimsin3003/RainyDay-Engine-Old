@@ -5,7 +5,7 @@
 
 using namespace DirectX;
 
-class Object
+class DLL_API Object
 {
 public:
 	Object();

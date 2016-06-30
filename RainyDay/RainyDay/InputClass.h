@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-class InputClass
+class DLL_API InputClass
 {
 public:
 	void Initialize();

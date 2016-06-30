@@ -11,7 +11,7 @@
 
 using namespace DirectX;
 
-class Renderer
+class DLL_API Renderer
 {
 public:
 	Renderer();

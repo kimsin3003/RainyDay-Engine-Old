@@ -6,7 +6,7 @@ class Scene;
 class InputClass;
 class Renderer;
 #include <string>
-#include "MyTime.h"
+#include "Time.h"
 #include <unordered_map>
 
 const bool FULL_SCREEN = false;
@@ -19,7 +19,7 @@ class SystemClass
 public:
 	static SystemClass* GetInstance();
 	~SystemClass();
-	void SetScene(Scene* scene);
+	DLL_API void SetScene(Scene* scene);
 	bool Initialize();
 	void Shutdown();
 	void Run();
@@ -48,7 +48,7 @@ private:
 	HWND m_hwnd;
 
 	InputClass* m_input;
-	CMyTime m_timer;
+	Time m_timer;
 	Renderer* m_renderer;
 	Scene* m_currentScene = nullptr;
 

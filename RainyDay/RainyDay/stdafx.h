@@ -12,9 +12,9 @@
 #include <windows.h>
 
 #ifdef DLL_EXPORTS
-#define DLL_API __declspec(dllexport)
+#define DLL_API __declspec( dllexport )
 #else
-#define DLL_API __declspec(dllimport)
+#define DLL_API __declspec( dllimport )
 #endif
 
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.

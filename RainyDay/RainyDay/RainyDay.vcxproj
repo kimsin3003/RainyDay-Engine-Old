@@ -156,7 +156,7 @@
     <ClInclude Include="InputClass.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="Model.h" />
-    <ClInclude Include="MyTime.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Renderer.h" />
@@ -187,7 +187,7 @@
     <ClCompile Include="InputClass.cpp" />
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="Model.cpp" />
-    <ClCompile Include="MyTime.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Renderer.cpp" />

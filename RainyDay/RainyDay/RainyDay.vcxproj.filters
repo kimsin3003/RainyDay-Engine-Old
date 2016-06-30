@@ -66,14 +66,14 @@
     <ClInclude Include="InputClass.h">
       <Filter>소스 파일\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="MyTime.h">
-      <Filter>소스 파일\Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Model.h">
       <Filter>소스 파일\Model</Filter>
     </ClInclude>
     <ClInclude Include="Vertex.h">
       <Filter>소스 파일\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>소스 파일\Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -116,14 +116,14 @@
     <ClCompile Include="InputClass.cpp">
       <Filter>소스 파일\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="MyTime.cpp">
-      <Filter>소스 파일\Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Model.cpp">
       <Filter>소스 파일\Model</Filter>
     </ClCompile>
     <ClCompile Include="Vertex.cpp">
       <Filter>소스 파일\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>소스 파일\Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

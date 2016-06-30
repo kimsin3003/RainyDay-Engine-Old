@@ -2,8 +2,7 @@
 #include "Model.h"
 #include "Camera.h"
 
-class UIModel :
-	public Model
+class DLL_API UIModel :	public Model
 {
 public:
 	UIModel();

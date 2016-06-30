@@ -1,18 +1,18 @@
 #include "stdafx.h"
 #include "MyTime.h"
 
-CMyTime::CMyTime(void) : m_bUseQPF(false)
+Time::Time(void) : m_bUseQPF(false)
 						, m_fElapsedTime(0.f)
 						, m_llQPFTicksPerSec(0)
 						, m_llLastElapsedTime(0)
 {
 }
 
-CMyTime::~CMyTime(void)
+Time::~Time(void)
 {
 }
 
-void CMyTime::Init()
+void Time::Init()
 {
 	LARGE_INTEGER qwTicksPerSec, qwTime;
 
@@ -27,7 +27,7 @@ void CMyTime::Init()
 	m_llLastElapsedTime = qwTime.QuadPart;
 }
 
-void CMyTime::ProcessTime()
+void Time::ProcessTime()
 {
 	if( !m_bUseQPF )
 	{

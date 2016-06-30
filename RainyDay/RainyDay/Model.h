@@ -13,7 +13,7 @@ struct PreLoadedData {
 	std::vector<WORD>			indices;
 };
 
-class Model :public Object
+class DLL_API Model : public Object
 {
 public:
 	Model();
