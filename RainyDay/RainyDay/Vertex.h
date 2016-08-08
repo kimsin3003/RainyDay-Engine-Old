@@ -3,7 +3,7 @@
 using namespace DirectX;
 
 namespace RainyDay {
-	struct Vertex
+	struct DLL_API Vertex
 	{
 		XMFLOAT3	pos;
 		XMFLOAT4	color;

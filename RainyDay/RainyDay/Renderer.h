@@ -3,7 +3,6 @@
 #include <directxmath.h>
 #include <map>
 #include <memory>
-#include "Model.h"
 #include "Effects\d3dx11effect.h"
 #include "Camera.h"
 #include "SystemClass.h"
@@ -12,6 +11,8 @@
 using namespace DirectX;
 
 namespace RainyDay {
+	class Model;
+
 	class DLL_API Renderer
 	{
 	public:
@@ -42,7 +43,7 @@ namespace RainyDay {
 		void CreateRenderState();
 
 		XMFLOAT4 m_lightDirection = { -0.3f, -1.0f, -0.2f, 1.0f };
-		XMFLOAT4 m_lightColor = { 1.0f, 1.0f, 1.0f, 1.0f };
+		XMFLOAT4 lightColor = { 1.0f, 1.0f, 1.0f, 1.0f };
 		Camera				m_camera;
 		int					m_width;
 		int					m_height;

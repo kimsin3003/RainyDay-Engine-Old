@@ -2,14 +2,15 @@
 
 #include <windows.h>
 #include "Model.h"
-class Scene;
-class InputClass;
-#include "Renderer.h"
 #include <string>
 #include "Time.h"
 #include <unordered_map>
 
 namespace RainyDay {
+	class Scene;
+	class InputClass;
+	class Renderer;
+
 	const bool FULL_SCREEN = false;
 	const bool VSYNC_ENABLED = true;
 	const float SCREEN_DEPTH = 1000.0f;

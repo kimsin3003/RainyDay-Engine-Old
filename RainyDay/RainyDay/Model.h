@@ -4,11 +4,12 @@
 #include <vector>
 #include "Camera.h"
 #include "Object.h"
+#include "Vertex.h"
 
-class Vertex;
 using namespace DirectX;
 
 namespace RainyDay {
+
 	struct PreLoadedData {
 		std::vector<Vertex>		vertices;
 		std::vector<WORD>			indices;

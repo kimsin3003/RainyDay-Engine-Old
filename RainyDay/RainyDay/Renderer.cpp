@@ -8,6 +8,7 @@
 #include "ConstVars.h"
 #include "UIModel.h"
 #include "Scene.h"
+#include "Model.h"
 
 namespace RainyDay {
 	Renderer::Renderer()
@@ -359,7 +360,7 @@ namespace RainyDay {
 
 		//ºû °è»ê
 		m_lightDir->SetFloatVector((float*)&m_lightDirection);
-		m_lightColor->SetFloatVector((float*)&lightColor);
+		m_lightColor->SetFloatVector((float*)&m_lightColor);
 
 		D3DX11_TECHNIQUE_DESC techDesc;
 		m_colorTech->GetDesc(&techDesc);

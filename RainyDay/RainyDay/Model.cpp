@@ -191,7 +191,7 @@ namespace RainyDay {
 					};
 				}
 
-				struct Vertex vertex =
+				Vertex vertex =
 				{
 					pos,
 					color,

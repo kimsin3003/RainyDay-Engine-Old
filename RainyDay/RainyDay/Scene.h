@@ -7,13 +7,13 @@
 #include "Camera.h"
 #include "SystemClass.h"
 
+namespace RainyDay {
 class UIModel;
 class UISprite;
 class Model;
 class InputClass;
 class Camera;
 
-namespace RainyDay {
 	class DLL_API Scene
 	{
 	public:

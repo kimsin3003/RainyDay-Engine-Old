@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
 
-
-namespace RainyDay {
+namespace RainyDay
+{
 	class DLL_API InputClass
 	{
 	public:
