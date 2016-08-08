@@ -2,9 +2,6 @@
 #include <d3d11.h>
 #include <string>
 
-#define KILLME false
-#define DONTKILL true
-
 namespace ConstVars
 {
 	extern const int WINDOW_WIDTH;

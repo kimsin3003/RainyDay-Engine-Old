@@ -51,9 +51,8 @@ namespace RainyDay {
 		m_currentScene = scene;
 	}
 
-	bool SystemClass::Initialize()
+	bool SystemClass::Initialize(int screenWidth, int screenHeight)
 	{
-		int screenWidth, screenHeight;
 		bool result;
 		m_timer.Init();
 
@@ -330,7 +329,7 @@ namespace RainyDay {
 		If this is set to true then we make the screen cover the entire users desktop window.If it is set to false we just make a 800x600 window in the middle of the screen.
 		I placed the FULL_SCREEN global variable at the top of the graphicsclass.h file in case you want to modify it.It will make sense later why I placed the global in that file instead of the header for this file.
 	*/
-	void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
+	void SystemClass::InitializeWindows(int screenWidth, int screenHeight)
 	{
 		WNDCLASSEX wc;
 		DEVMODE dmScreenSettings;
@@ -365,13 +364,13 @@ namespace RainyDay {
 		RegisterClassEx(&wc);
 
 		// Determine the resolution of the clients desktop screen.
-		screenWidth = GetSystemMetrics(SM_CXSCREEN);
-		screenHeight = GetSystemMetrics(SM_CYSCREEN);
 
 		// Setup the screen settings depending on whether it is running in full screen or in windowed mode.
 		if (FULL_SCREEN)
 		{
 			// If full screen set the screen to maximum size of the users desktop and 32bit.
+			screenWidth = GetSystemMetrics(SM_CXSCREEN);
+			screenHeight = GetSystemMetrics(SM_CYSCREEN);
 			memset(&dmScreenSettings, 0, sizeof(dmScreenSettings));
 			dmScreenSettings.dmSize = sizeof(dmScreenSettings);
 			dmScreenSettings.dmPelsWidth = (unsigned long)screenWidth;
@@ -388,9 +387,6 @@ namespace RainyDay {
 		}
 		else
 		{
-			// If windowed then set it to 800x600 resolution.
-			screenWidth = ConstVars::WINDOW_WIDTH;
-			screenHeight = ConstVars::WINDOW_HEIGHT;
 
 			// Place the window in the middle of the screen.
 			posX = (GetSystemMetrics(SM_CXSCREEN) - screenWidth) / 2;

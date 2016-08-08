@@ -16,13 +16,13 @@ namespace RainyDay {
 	const float SCREEN_DEPTH = 1000.0f;
 	const float SCREEN_NEAR = 0.1f;
 
-	class SystemClass
+	class DLL_API SystemClass
 	{
 	public:
 		static SystemClass* GetInstance();
 		~SystemClass();
-		DLL_API void SetScene(Scene* scene);
-		bool Initialize();
+		void SetScene(Scene* scene);
+		bool Initialize(int screenWidth, int screenHeight);
 		void Shutdown();
 		void Run();
 		void StopSound(std::string fileName);
@@ -40,7 +40,7 @@ namespace RainyDay {
 	private:
 		SystemClass();
 		bool Frame();
-		void InitializeWindows(int&, int&);
+		void InitializeWindows(int screenWidth, int screenHeight);
 		void ShutdownWindows();
 
 	private:
