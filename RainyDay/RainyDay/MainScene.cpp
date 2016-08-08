@@ -4,7 +4,7 @@
 #include "ConstVars.h"
 #include "UISprite.h"
 
-void MainScene::Start(Camera& camera)
+void MainScene::Start(RainyDay::Camera& camera)
 {
 
 	if (!SystemClass::GetInstance()->GetBoolVariable("started"))

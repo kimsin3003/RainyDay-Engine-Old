@@ -1,50 +1,53 @@
 #include "stdafx.h"
 #include "inputclass.h"
 
-void InputClass::Initialize()
-{
-	int i;
-
-	// Initialize all the keys to being released and not pressed.
-	for (i = 0; i < 256; i++)
+namespace RainyDay {
+	void InputClass::Initialize()
 	{
-		m_keys[i] = false;
+		int i;
+
+		// Initialize all the keys to being released and not pressed.
+		for (i = 0; i < 256; i++)
+		{
+			m_keys[i] = false;
+		}
+
+		return;
 	}
 
-	return;
-}
-
-//set pressed keys up.
-void InputClass::Reset()
-{
-
-	for each(int key in m_pressedKeys)
+	//set pressed keys up.
+	void InputClass::Reset()
 	{
-		m_keys[key] = false;
+
+		for each(int key in m_pressedKeys)
+		{
+			m_keys[key] = false;
+		}
+		m_pressedKeys.clear();
 	}
-	m_pressedKeys.clear();
-}
 
 
-void InputClass::KeyDown(unsigned int input)
-{
-	// If a key is pressed then save that state in the key array.
-	m_keys[input] = true;
-	m_pressedKeys.push_back(input);
-	return;
-}
+	void InputClass::KeyDown(unsigned int input)
+	{
+		// If a key is pressed then save that state in the key array.
+		m_keys[input] = true;
+		m_pressedKeys.push_back(input);
+		return;
+	}
 
 
-void InputClass::KeyUp(unsigned int input)
-{
-	// If a key is released then clear that state in the key array.
-	m_keys[input] = false;
-	return;
-}
+	void InputClass::KeyUp(unsigned int input)
+	{
+		// If a key is released then clear that state in the key array.
+		m_keys[input] = false;
+		return;
+	}
 
 
-bool InputClass::IsKeyDown(unsigned int key)
-{
-	// Return what state the key is in (pressed/not pressed).
-	return m_keys[key];
+	bool InputClass::IsKeyDown(unsigned int key)
+	{
+		// Return what state the key is in (pressed/not pressed).
+		return m_keys[key];
+	}
+
 }

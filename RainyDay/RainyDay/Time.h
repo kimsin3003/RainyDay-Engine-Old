@@ -2,19 +2,23 @@
 
 #include <Windows.h>
 
-class DLL_API Time
-{
-	bool		m_bUseQPF;
-	float		m_fElapsedTime;
-	LONGLONG	m_llQPFTicksPerSec;
-	LONGLONG	m_llLastElapsedTime;
-public:
-	Time(void);
-	virtual ~Time(void);
+namespace RainyDay {
+	class DLL_API Time
+	{
+		bool		m_bUseQPF;
+		float		m_fElapsedTime;
+		LONGLONG	m_llQPFTicksPerSec;
+		LONGLONG	m_llLastElapsedTime;
+	public:
+		Time(void);
+		virtual ~Time(void);
 
-	inline float GetElapsedTime() const
-	{ return m_fElapsedTime; };
+		inline float GetElapsedTime() const
+		{
+			return m_fElapsedTime;
+		};
 
-	void Init();
-	void ProcessTime();
-};
+		void Init();
+		void ProcessTime();
+	};
+}
