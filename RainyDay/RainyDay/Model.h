@@ -1,16 +1,14 @@
 #pragma once
 #include <d3d11.h>
-#include <DirectXMath.h>
 #include <vector>
 #include "Camera.h"
 #include "Object.h"
 #include "Vertex.h"
 
-using namespace DirectX;
-
 namespace RainyDay {
 
-	struct PreLoadedData {
+	class DLL_API PreLoadedData {
+	public:
 		std::vector<Vertex>		vertices;
 		std::vector<WORD>			indices;
 	};

@@ -1,10 +1,9 @@
 #pragma once
-#include <DirectXmath.h>
-using namespace DirectX;
 
 namespace RainyDay {
-	struct DLL_API Vertex
+	DLL_API class  Vertex
 	{
+	public:
 		XMFLOAT3	pos;
 		XMFLOAT4	color;
 

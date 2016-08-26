@@ -1,6 +1,5 @@
 #pragma once
 #include <d3d11.h>
-#include <directxmath.h>
 #include <map>
 #include <memory>
 #include "Effects\d3dx11effect.h"
@@ -8,7 +7,6 @@
 #include "SystemClass.h"
 #include "UISprite.h"
 
-using namespace DirectX;
 
 namespace RainyDay {
 	class Model;

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "rainyday.h"
 #include "ConstVars.h"
 
 const int ConstVars::WINDOW_WIDTH				 = 480;

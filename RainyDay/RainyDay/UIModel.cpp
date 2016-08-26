@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "rainyday.h"
 #include <fstream>
 #include "UIModel.h"
 #include "Vertex.h"

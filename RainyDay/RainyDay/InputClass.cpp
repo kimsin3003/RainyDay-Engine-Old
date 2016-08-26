@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "rainyday.h"
 #include "inputclass.h"
 
 namespace RainyDay {

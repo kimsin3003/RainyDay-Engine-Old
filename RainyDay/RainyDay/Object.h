@@ -1,9 +1,6 @@
 #pragma once
-#include <DirectXMath.h>
 #include <functional>
 #include <list>
-
-using namespace DirectX;
 
 namespace RainyDay {
 
@@ -70,8 +67,8 @@ namespace RainyDay {
 
 	protected:
 		XMFLOAT4 				m_pos = { 0.0f, 0.0f, 0.0f, 0.0f };
-		DirectX::XMFLOAT4		m_scale;
-		DirectX::XMFLOAT4		m_rgba;
+		XMFLOAT4		m_scale;
+		XMFLOAT4		m_rgba;
 		float					m_xRot;
 		float					m_yRot;
 		float					m_zRot;

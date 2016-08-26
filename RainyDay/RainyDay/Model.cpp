@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "rainyday.h"
 #include <dxgi.h>
 #include <d3dcompiler.h>
 #include <algorithm>

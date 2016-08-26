@@ -25,6 +25,7 @@ class Camera;
 
 		//false를 반환하면 프로세스 종료됨.
 		virtual bool Update(float dt, InputClass& input, Camera& camera) = 0;
+
 		virtual void UpdateUIString(Camera& camera);
 		void ShutDownAll();
 		virtual void ShutDown() = 0;

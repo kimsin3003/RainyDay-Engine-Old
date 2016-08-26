@@ -1,7 +1,5 @@
 #pragma once
-#include <DirectXMath.h>
 #include "Object.h"
-using namespace DirectX;
 
 namespace RainyDay {
 	class DLL_API Camera : public Object

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "rainyday.h"
 #include <windows.h>
 #include "Scene.h"
 #include <algorithm> 

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "rainyday.h"
 #include <Mmsystem.h>
 #include "SystemClass.h"
 #include "ConstVars.h"
@@ -57,9 +57,6 @@ namespace RainyDay {
 		m_timer.Init();
 
 
-		// Initialize the width and height of the screen to zero before sending the variables into the function.
-		screenWidth = 0;
-		screenHeight = 0;
 		// Create the input object.  This object will be used to handle reading the keyboard input from the user.
 		m_input = new InputClass();
 
