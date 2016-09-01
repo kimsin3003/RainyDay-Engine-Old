@@ -2,6 +2,7 @@
 #include <d3d11.h>
 #include <map>
 #include <memory>
+#include <string>
 #include "Effects\d3dx11effect.h"
 #include "Camera.h"
 #include "SystemClass.h"
@@ -11,7 +12,7 @@
 namespace RainyDay {
 	class Model;
 
-	class DLL_API Renderer
+	class Renderer
 	{
 	public:
 		Renderer();
@@ -71,7 +72,7 @@ namespace RainyDay {
 		ID3DX11Effect*									m_effect = nullptr;
 		ID3DX11EffectTechnique*							m_colorTech = nullptr;
 
-		ID3DX11EffectSamplerVariable*			m_samLinear = nullptr;
+		ID3DX11EffectSamplerVariable*			m_samplerVariable = nullptr;
 		ID3DX11EffectShaderResourceVariable*	m_texDiffuse = nullptr;
 		ID3DX11EffectMatrixVariable*			m_wvp;
 		ID3DX11EffectMatrixVariable*			m_world;
@@ -79,7 +80,7 @@ namespace RainyDay {
 		ID3DX11EffectVectorVariable*			m_lightColor;
 
 		ID3D11Resource*							m_texture = nullptr;
-		ID3D11SamplerState*						m_samplerLinear = nullptr;
+		ID3D11SamplerState*						m_samplerState = nullptr;
 
 		std::map<WCHAR*, ID3D11ShaderResourceView*>	m_textureRVList;
 		std::vector<Model*>				m_modelList;

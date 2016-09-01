@@ -11,7 +11,7 @@
 
 namespace RainyDay {
 
-	Model::Model() : m_indexBuffer(nullptr), m_vertexBuffer(nullptr), m_textureName(ConstVars::PLANE_TEX_FILE),
+	Model::Model() : m_indexBuffer(nullptr), m_vertexBuffer(nullptr), m_textureName(nullptr),
 		m_vertexIsChanged(true)
 	{
 
@@ -522,6 +522,85 @@ namespace RainyDay {
 		{
 			m_indices.push_back(indices[i]);
 		}
+	}
+
+	void Model::SetToCube(XMFLOAT3 boxSize)
+	{
+		float widthX = boxSize.x;
+		float height = boxSize.y;
+		float widthZ = boxSize.z;
+		m_vertices.clear();
+		m_indices.clear();
+
+		//position of vertecis
+		XMFLOAT3 pos[8];
+		for (int i = 0; i < 8; i++)
+		{
+			UINT right = i / 4;	//right or left
+			UINT upper = (i / 2) % 2;	//upper or lower
+			UINT back = i % 2; //front or back	
+			pos[i] = XMFLOAT3(
+				0 - widthX / 2 + right*widthX,
+				0 - height / 2 + upper*height,
+				0 - widthZ / 2 + back*widthZ
+			);
+		}
+
+		//color
+		m_rgba;
+
+		//normal vector
+		XMFLOAT3 left = { -0.33f, +0.00f, +0.00f };
+		XMFLOAT3 right = { +0.33f, +0.00f, +0.00f };
+		XMFLOAT3 up = { +0.00f, +0.33f, +0.00f };
+		XMFLOAT3 down = { +0.00f, -0.33f, +0.00f };
+		XMFLOAT3 front = { +0.00f, +0.00f, -0.33f };
+		XMFLOAT3 back = { +0.00f, +0.00f, +0.33f };
+
+		static int seed = 0;
+		++seed;
+		seed %= 5;
+		//top area
+		auto v1 = Vertex({ pos[0 + 2 + 1] , m_rgba, up,{ 0.0f + seed / 5.0f, 0.0f + seed / 5.0f } });
+		auto v2 = Vertex({ pos[4 + 2 + 1] , m_rgba, up,{ boxSize.x + seed / 5.0f, 0.0f + seed / 5.0f } });
+		auto v3 = Vertex({ pos[4 + 2 + 0] , m_rgba, up,{ boxSize.x + seed / 5.0f, boxSize.z + seed / 5.0f } });
+		auto v4 = Vertex({ pos[0 + 2 + 0] , m_rgba, up,{ 0.0f + seed / 5.0f, boxSize.z + seed / 5.0f } });
+		AddRectangle(v1, v2, v3, v4);
+
+		//bottom area
+		v1 = Vertex({ pos[0 + 0 + 0] , m_rgba, down,{ 0.0f, 0.0f } });
+		v2 = Vertex({ pos[4 + 0 + 0] , m_rgba, down,{ 1.0f, 0.0f } });
+		v3 = Vertex({ pos[4 + 0 + 1] , m_rgba, down,{ 1.0f, 1.0f } });
+		v4 = Vertex({ pos[0 + 0 + 1] , m_rgba, down,{ 0.0f, 1.0f } });
+		AddRectangle(v1, v2, v3, v4);
+
+		//right area
+		v1 = Vertex({ pos[4 + 2 + 0] , m_rgba, right,{ 0.0f + seed / 5.0f, 0.0f + seed / 5.0f } });
+		v2 = Vertex({ pos[4 + 2 + 1] , m_rgba, right,{ boxSize.z + seed / 5.0f, 0.0f + seed / 5.0f } });
+		v3 = Vertex({ pos[4 + 0 + 1] , m_rgba, right,{ boxSize.z + seed / 5.0f, boxSize.y + seed / 5.0f } });
+		v4 = Vertex({ pos[4 + 0 + 0] , m_rgba, right,{ 0.0f + seed / 5.0f, boxSize.y + seed / 5.0f } });
+		AddRectangle(v1, v2, v3, v4);
+
+		//left area
+		v1 = Vertex({ pos[0 + 2 + 1] , m_rgba, left,{ 0.0f, 0.0f } });
+		v2 = Vertex({ pos[0 + 2 + 0] , m_rgba, left,{ 1.0f, 0.0f } });
+		v3 = Vertex({ pos[0 + 0 + 0] , m_rgba, left,{ 1.0f, 1.0f } });
+		v4 = Vertex({ pos[0 + 0 + 1] , m_rgba, left,{ 0.0f, 1.0f } });
+		AddRectangle(v1, v2, v3, v4);
+
+		//front area
+		v1 = Vertex({ pos[0 + 2 + 0] , m_rgba, front,{ 0.0f + seed / 5.0f, 0.0f + seed / 5.0f } });
+		v2 = Vertex({ pos[4 + 2 + 0] , m_rgba, front,{ boxSize.x + seed / 5.0f, 0.0f + seed / 5.0f } });
+		v3 = Vertex({ pos[4 + 0 + 0] , m_rgba, front,{ boxSize.x + seed / 5.0f, boxSize.y + seed / 5.0f } });
+		v4 = Vertex({ pos[0 + 0 + 0] , m_rgba, front,{ 0.0f + seed / 5.0f, boxSize.y + seed / 5.0f } });
+		AddRectangle(v1, v2, v3, v4);
+
+		//back area
+		v1 = Vertex({ pos[4 + 2 + 1] , m_rgba, back,{ 0.0f, 0.0f } });
+		v2 = Vertex({ pos[0 + 2 + 1] , m_rgba, back,{ 1.0f, 0.0f } });
+		v3 = Vertex({ pos[0 + 0 + 1] , m_rgba, back,{ 1.0f, 1.0f } });
+		v4 = Vertex({ pos[4 + 0 + 1] , m_rgba, back,{ 0.0f, 1.0f } });
+		AddRectangle(v1, v2, v3, v4);
 	}
 
 	void Model::SetToBackground(float width, float height, XMFLOAT3 normal)

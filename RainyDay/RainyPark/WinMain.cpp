@@ -5,33 +5,33 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline, int iCmdshow)
 {
-	SystemClass* System;
 	bool result;
 
 
 	// Create the system object.
-	System = SystemClass::GetInstance();
-	if (!System)
+
+	SystemClass* system = SystemClass::GetInstance();
+	if (!system)
 	{
 		return 0;
 	}
 
 	// Initialize and run the system object.
-	result = System->Initialize();
+	result = system->Initialize(1024, 768);
 
 	SystemClass::GetInstance()->SetBoolVariable("started", false);
 
 	Scene* scene = new MainScene();
-	System->SetScene(scene);
+	system->SetScene(scene);
 	if (result)
 	{
-		System->Run();
+		system->Run();
 	}
 
 	// Shutdown and release the system object.
-	System->Shutdown();
-	delete System;
-	System = 0;
+	system->Shutdown();
+	delete system;
+	system = 0;
 
 	return 0;
 }

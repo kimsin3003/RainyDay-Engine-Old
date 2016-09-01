@@ -57,7 +57,7 @@ namespace RainyDay {
 		void AddRectangle(Vertex& v1, Vertex& v2, Vertex& v3, Vertex& v4);
 		bool m_vertexIsChanged = true;
 
-		WCHAR*						m_textureName;
+		WCHAR*						m_textureName = nullptr;
 
 		ID3D11Buffer*				m_vertexBuffer = nullptr;
 		ID3D11Buffer*				m_indexBuffer = nullptr;

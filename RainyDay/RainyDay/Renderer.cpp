@@ -1,7 +1,9 @@
 #include "rainyday.h"
 #include <time.h>
 #include <dxgi.h>
+#include <string>
 #include <d3dcompiler.h>
+#include <iostream>
 #include "Renderer.h"
 #include "Vertex.h"
 #include "WICTextureLoader.h"
@@ -147,8 +149,8 @@ namespace RainyDay {
 
 	void Renderer::CreateShader()
 	{
-		ID3D10Blob* compiledShader = 0;
-		ID3D10Blob* compilationMsgs = 0;
+		ID3D10Blob* compiledShader = nullptr;
+		ID3D10Blob* compilationMsgs = nullptr;
 		DWORD shaderFlags = 0;
 
 #if defined (DEBUG) || defined(_DEBUG)
@@ -156,14 +158,17 @@ namespace RainyDay {
 		shaderFlags |= D3D10_SHADER_SKIP_OPTIMIZATION;
 #endif
 		HRESULT hr = D3DCompileFromFile(
-			L"./MyShader.fx", 0, 0, //shader 파일 설정
+			L"MyShader.fx", 0, 0, //shader 파일 설정
 			0, "fx_5_0", shaderFlags,
 			0, &compiledShader,
 			&compilationMsgs
 		);
 
 		if (FAILED(hr))
+		{
+			std::cout << "Shader Compile Error" << std::endl;
 			return;
+		}
 
 		hr = D3DX11CreateEffectFromMemory(
 			compiledShader->GetBufferPointer(), compiledShader->GetBufferSize(), 0, m_device,
@@ -171,7 +176,10 @@ namespace RainyDay {
 
 
 		if (FAILED(hr))
+		{
+			std::cout << "Effect Creation Error" << std::endl;
 			return;
+		}
 
 		m_colorTech = m_effect->GetTechniqueByName("ColorTech");
 
@@ -180,7 +188,7 @@ namespace RainyDay {
 		m_lightDir = m_effect->GetVariableByName("lightDir")->AsVector();
 		m_lightColor = m_effect->GetVariableByName("lightColor")->AsVector();
 		m_texDiffuse = m_effect->GetVariableByName("texDiffuse")->AsShaderResource();
-		m_samLinear = m_effect->GetVariableByName("samLinear")->AsSampler();
+		m_samplerVariable = m_effect->GetVariableByName("samLinear")->AsSampler();
 
 		if (FAILED(hr))
 			return;
@@ -332,7 +340,7 @@ namespace RainyDay {
 		sampDesc.MinLOD = 0;
 		sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
 
-		hr = m_device->CreateSamplerState(&sampDesc, &m_samplerLinear);
+		hr = m_device->CreateSamplerState(&sampDesc, &m_samplerState);
 
 		if (FAILED(hr))
 			return hr;
@@ -352,9 +360,12 @@ namespace RainyDay {
 		m_immediateContext->IASetIndexBuffer(model->GetIB(), DXGI_FORMAT_R16_UINT, 0);
 
 		auto textureName = model->GetTextureName();
-		auto texture = m_textureRVList.at(textureName);
-		m_texDiffuse->SetResource(texture);
-		m_samLinear->SetSampler(0, m_samplerLinear);
+		if (textureName != nullptr)
+		{
+			auto texture = m_textureRVList.at(textureName);
+			m_texDiffuse->SetResource(texture);
+		}
+		m_samplerVariable->SetSampler(0, m_samplerState);
 		// 계산 및 그리기
 		CalculateMatrixForBox(deltaTime, model);
 
@@ -377,7 +388,7 @@ namespace RainyDay {
 		auto textureName = model->GetTextureName();
 		auto texture = m_textureRVList.at(textureName);
 		m_texDiffuse->SetResource(texture);
-		m_samLinear->SetSampler(0, m_samplerLinear);
+		m_samplerVariable->SetSampler(0, m_samplerState);
 
 		// 계산 및 그리기
 		//XMMATRIX world = XMMatrixIdentity();
@@ -524,7 +535,7 @@ namespace RainyDay {
 		if (m_pixelShader) m_pixelShader->Release();
 		if (m_solidRS) m_solidRS->Release();
 		if (m_wireFrameRS) m_wireFrameRS->Release();
-		if (m_samplerLinear) m_samplerLinear->Release();
+		if (m_samplerState) m_samplerState->Release();
 		if (m_effect) m_effect->Release();
 
 		for (auto texture : m_textureRVList)

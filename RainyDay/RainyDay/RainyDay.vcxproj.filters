@@ -120,4 +120,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="MyShader.fx">
+      <Filter>소스 파일\Graphics\shader</Filter>
+    </FxCompile>
+  </ItemGroup>
 </Project>
