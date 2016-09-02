@@ -72,20 +72,20 @@ namespace RainyDay {
 		ID3DX11Effect*									m_effect = nullptr;
 		ID3DX11EffectTechnique*							m_colorTech = nullptr;
 
-		ID3DX11EffectSamplerVariable*			m_samplerVariable = nullptr;
-		ID3DX11EffectShaderResourceVariable*	m_texDiffuse = nullptr;
-		ID3DX11EffectMatrixVariable*			m_wvp;
-		ID3DX11EffectMatrixVariable*			m_world;
-		ID3DX11EffectVectorVariable*			m_lightDir;
-		ID3DX11EffectVectorVariable*			m_lightColor;
+		ID3DX11EffectSamplerVariable*					m_samplerVariable = nullptr;
+		ID3DX11EffectShaderResourceVariable*			m_texDiffuse = nullptr;
+		ID3DX11EffectMatrixVariable*					m_wvp;
+		ID3DX11EffectMatrixVariable*					m_world;
+		ID3DX11EffectVectorVariable*					m_lightDir;
+		ID3DX11EffectVectorVariable*					m_lightColor;
 
-		ID3D11Resource*							m_texture = nullptr;
-		ID3D11SamplerState*						m_samplerState = nullptr;
+		ID3D11Resource*									m_texture = nullptr;
+		ID3D11SamplerState*								m_samplerState = nullptr;
 
-		std::map<WCHAR*, ID3D11ShaderResourceView*>	m_textureRVList;
-		std::vector<Model*>				m_modelList;
-		std::vector<Model*>				m_transparentModelList;
-		std::vector<UISprite*>					m_UIList;
+		std::map<WCHAR*, ID3D11ShaderResourceView*>		m_textureRVList;
+		std::vector<Model*>								m_modelList;
+		std::vector<Model*>								m_transparentModelList;
+		std::vector<UISprite*>							m_UIList;
 
 		//friend class SystemClass;
 	};

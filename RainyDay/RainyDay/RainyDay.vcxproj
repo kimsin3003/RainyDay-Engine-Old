@@ -166,6 +166,7 @@
     <ClInclude Include="ConstVars.h" />
     <ClInclude Include="InputClass.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Object.h" />
@@ -196,6 +197,7 @@
     </ClCompile>
     <ClCompile Include="InputClass.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="Object.cpp" />
