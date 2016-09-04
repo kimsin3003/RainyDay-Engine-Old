@@ -11,6 +11,7 @@ namespace RainyDay {
 
 	UIModel::UIModel() : Model(), m_uiPosx(0), m_uiPosy(0), m_width(LETTERWIDTH), m_height(LETTERHEIGHT)
 	{
+		m_isUI = true;
 	}
 
 

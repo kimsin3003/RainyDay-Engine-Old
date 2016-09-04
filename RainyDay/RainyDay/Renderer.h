@@ -32,7 +32,7 @@ namespace RainyDay {
 
 		HRESULT InitDevice(HWND hwnd);
 		void CreateShader();
-		void CalculateMatrixForBox(float deltaTime, Model* model);
+		void CalculateTransformMatrix(float deltaTime, Model* model);
 		void CreateDepthStencilState();
 		void CreateDepthStencilTexture();
 		HRESULT CreateBlendState();
@@ -41,8 +41,6 @@ namespace RainyDay {
 		void SetUIBuffers(Model* model, float deltaTime);
 		void CreateRenderState();
 
-		XMFLOAT4 m_lightDirection = { -0.3f, -1.0f, -0.2f, 1.0f };
-		XMFLOAT4 lightColor = { 1.0f, 1.0f, 1.0f, 1.0f };
 		Camera				m_camera;
 		int					m_width;
 		int					m_height;
@@ -69,15 +67,15 @@ namespace RainyDay {
 		ID3D11RasterizerState*							m_solidRS = nullptr;
 		ID3D11RasterizerState*							m_wireFrameRS = nullptr;
 
-		ID3DX11Effect*									m_effect = nullptr;
-		ID3DX11EffectTechnique*							m_colorTech = nullptr;
-
-		ID3DX11EffectSamplerVariable*					m_samplerVariable = nullptr;
-		ID3DX11EffectShaderResourceVariable*			m_texDiffuse = nullptr;
-		ID3DX11EffectMatrixVariable*					m_wvp;
-		ID3DX11EffectMatrixVariable*					m_world;
-		ID3DX11EffectVectorVariable*					m_lightDir;
-		ID3DX11EffectVectorVariable*					m_lightColor;
+// 		ID3DX11Effect*									m_effect = nullptr;
+// 		ID3DX11EffectTechnique*							m_colorTech = nullptr;
+// 
+// 		ID3DX11EffectSamplerVariable*					m_samplerVariable = nullptr;
+// 		ID3DX11EffectShaderResourceVariable*			m_texDiffuse = nullptr;
+// 		ID3DX11EffectMatrixVariable*					m_wvp;
+// 		ID3DX11EffectMatrixVariable*					m_world;
+//  		ID3DX11EffectVectorVariable*					m_lightDir;
+//  		ID3DX11EffectVectorVariable*					m_lightColor;
 
 		ID3D11Resource*									m_texture = nullptr;
 		ID3D11SamplerState*								m_samplerState = nullptr;
@@ -87,6 +85,5 @@ namespace RainyDay {
 		std::vector<Model*>								m_transparentModelList;
 		std::vector<UISprite*>							m_UIList;
 
-		//friend class SystemClass;
 	};
 }

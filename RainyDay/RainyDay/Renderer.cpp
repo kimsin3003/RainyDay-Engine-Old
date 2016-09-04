@@ -30,7 +30,7 @@ namespace RainyDay {
 		InitDevice(hwnd);
 		m_camera.InitCamera();
 
-		CreateShader();
+		//CreateShader();
 		CreateDepthStencilTexture();
 		CreateDepthStencilState();
 		CreateBlendState();
@@ -147,78 +147,84 @@ namespace RainyDay {
 	}
 
 
-	void Renderer::CreateShader()
-	{
-		ID3D10Blob* compiledShader = nullptr;
-		ID3D10Blob* compilationMsgs = nullptr;
-		DWORD shaderFlags = 0;
+// 	void Renderer::CreateShader()
+// 	{
+// 		ID3D10Blob* compiledShader = nullptr;
+// 		ID3D10Blob* compilationMsgs = nullptr;
+// 		DWORD shaderFlags = 0;
+// 
+// #if defined (DEBUG) || defined(_DEBUG)
+// 		shaderFlags |= D3D10_SHADER_DEBUG;
+// 		shaderFlags |= D3D10_SHADER_SKIP_OPTIMIZATION;
+// #endif
+// 		std::wstring fileName = L"MyShader.fx";
+// 		std::string temp(__FILE__);
+// 		std::wstring currentDir;
+// 		currentDir.assign(temp.begin(), temp.end());
+// 		std::wstring fileDir = currentDir + L"\\..\\" + fileName;
+// 
+// 		HRESULT hr = D3DCompileFromFile(
+// 			fileDir.c_str(), 0, 0, //shader 파일 설정
+// 			0, "fx_5_0", shaderFlags,
+// 			0, &compiledShader,
+// 			&compilationMsgs
+// 		);
+// 
+// 		if (FAILED(hr))
+// 		{
+// 			std::cout << "Shader Compile Error" << std::endl;
+// 			return;
+// 		}
+// 
+// 		hr = D3DX11CreateEffectFromMemory(
+// 			compiledShader->GetBufferPointer(), compiledShader->GetBufferSize(), 0, m_device,
+// 			&m_effect);
+// 
+// 
+// 		if (FAILED(hr))
+// 		{
+// 			std::cout << "Effect Creation Error" << std::endl;
+// 			return;
+// 		}
+// 
+// 		m_colorTech = m_effect->GetTechniqueByName("ColorTech");
+// 
+// 		m_wvp = m_effect->GetVariableByName("wvp")->AsMatrix();
+// 		m_world = m_effect->GetVariableByName("world")->AsMatrix();
+// 		m_lightDir = m_effect->GetVariableByName("lightDir")->AsVector();
+// 		m_lightColor = m_effect->GetVariableByName("lightColor")->AsVector();
+// 		m_texDiffuse = m_effect->GetVariableByName("texDiffuse")->AsShaderResource();
+// 		m_samplerVariable = m_effect->GetVariableByName("samLinear")->AsSampler();
+// 
+// 		if (FAILED(hr))
+// 			return;
+// 
+// 
+// 		D3D11_INPUT_ELEMENT_DESC	layout[] =
+// 		{
+// 			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+// 			{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+// 			{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+// 			{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+// 		};
+// 
+// 		D3DX11_PASS_DESC passDesc;
+// 		UINT numElements = ARRAYSIZE(layout);
+// 
+// 		m_colorTech->GetPassByIndex(0)->GetDesc(&passDesc);
+// 
+// 		hr = m_device->CreateInputLayout(
+// 			layout,
+// 			numElements,
+// 			passDesc.pIAInputSignature,
+// 			passDesc.IAInputSignatureSize,
+// 			&m_inputLayout);
+// 
+// 		if (FAILED(hr))
+// 			return;
+// 	}
 
-#if defined (DEBUG) || defined(_DEBUG)
-		shaderFlags |= D3D10_SHADER_DEBUG;
-		shaderFlags |= D3D10_SHADER_SKIP_OPTIMIZATION;
-#endif
-		HRESULT hr = D3DCompileFromFile(
-			L"MyShader.fx", 0, 0, //shader 파일 설정
-			0, "fx_5_0", shaderFlags,
-			0, &compiledShader,
-			&compilationMsgs
-		);
-
-		if (FAILED(hr))
-		{
-			std::cout << "Shader Compile Error" << std::endl;
-			return;
-		}
-
-		hr = D3DX11CreateEffectFromMemory(
-			compiledShader->GetBufferPointer(), compiledShader->GetBufferSize(), 0, m_device,
-			&m_effect);
-
-
-		if (FAILED(hr))
-		{
-			std::cout << "Effect Creation Error" << std::endl;
-			return;
-		}
-
-		m_colorTech = m_effect->GetTechniqueByName("ColorTech");
-
-		m_wvp = m_effect->GetVariableByName("wvp")->AsMatrix();
-		m_world = m_effect->GetVariableByName("world")->AsMatrix();
-		m_lightDir = m_effect->GetVariableByName("lightDir")->AsVector();
-		m_lightColor = m_effect->GetVariableByName("lightColor")->AsVector();
-		m_texDiffuse = m_effect->GetVariableByName("texDiffuse")->AsShaderResource();
-		m_samplerVariable = m_effect->GetVariableByName("samLinear")->AsSampler();
-
-		if (FAILED(hr))
-			return;
-
-
-		D3D11_INPUT_ELEMENT_DESC	layout[] =
-		{
-			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-			{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-			{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-			{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-		};
-
-		D3DX11_PASS_DESC passDesc;
-		UINT numElements = ARRAYSIZE(layout);
-
-		m_colorTech->GetPassByIndex(0)->GetDesc(&passDesc);
-
-		hr = m_device->CreateInputLayout(
-			layout,
-			numElements,
-			passDesc.pIAInputSignature,
-			passDesc.IAInputSignatureSize,
-			&m_inputLayout);
-
-		if (FAILED(hr))
-			return;
-	}
-
-	void Renderer::CalculateMatrixForBox(float deltaTime, Model* model)
+	void Renderer::CalculateTransformMatrix(float deltaTime, Model* model)
 	{
 		// 박스를 회전시키기 위한 연산.    위치, 크기를 변경하고자 한다면 SRT를 기억할 것.      
 
@@ -232,8 +238,8 @@ namespace RainyDay {
 		XMMATRIX world = scale * rotation * trans;
 		XMMATRIX wvp = world * m_camera.GetView() * m_camera.GetProjection();
 
-		m_wvp->SetMatrix((float*)&wvp);
-		m_world->SetMatrix((float*)&world);
+		model->GetShader()->GetWVPMatrix()->SetMatrix((float*)&wvp);
+		model->GetShader()->GetWorldMatrix()->SetMatrix((float*)&world);
 	}
 
 	void Renderer::CreateDepthStencilState()
@@ -363,18 +369,15 @@ namespace RainyDay {
 		if (textureName != nullptr)
 		{
 			auto texture = m_textureRVList.at(textureName);
-			m_texDiffuse->SetResource(texture);
+			model->GetShader()->GetTexDiffuse()->SetResource(texture);
 		}
-		m_samplerVariable->SetSampler(0, m_samplerState);
+		model->GetShader()->GetSamplerVariable()->SetSampler(0, m_samplerState);
 		// 계산 및 그리기
-		CalculateMatrixForBox(deltaTime, model);
+		CalculateTransformMatrix(deltaTime, model);
 
-		//빛 계산
-		m_lightDir->SetFloatVector((float*)&m_lightDirection);
-		m_lightColor->SetFloatVector((float*)&m_lightColor);
 
 		D3DX11_TECHNIQUE_DESC techDesc;
-		m_colorTech->GetDesc(&techDesc);
+		model->GetShader()->GetEffectTechnique()->GetDesc(&techDesc);
 	}
 
 	void Renderer::SetUIBuffers(Model* model, float deltaTime)
@@ -387,8 +390,8 @@ namespace RainyDay {
 
 		auto textureName = model->GetTextureName();
 		auto texture = m_textureRVList.at(textureName);
-		m_texDiffuse->SetResource(texture);
-		m_samplerVariable->SetSampler(0, m_samplerState);
+		model->GetShader()->GetTexDiffuse()->SetResource(texture);
+		model->GetShader()->GetSamplerVariable()->SetSampler(0, m_samplerState);
 
 		// 계산 및 그리기
 		//XMMATRIX world = XMMatrixIdentity();
@@ -397,11 +400,11 @@ namespace RainyDay {
 		//m_world->SetMatrix((float*)&world);
 
 		//빛 계산
-		//m_lightDir->SetFloatVector((float*)&lightDirection);
-		//m_lightColor->SetFloatVector((float*)&lightColor);
+// 		m_lightDir->SetFloatVector((float*)&lightDirection);
+// 		m_lightColor->SetFloatVector((float*)&lightColor);
 
 		D3DX11_TECHNIQUE_DESC techDesc;
-		m_colorTech->GetDesc(&techDesc);
+		model->GetShader()->GetEffectTechnique()->GetDesc(&techDesc);
 	}
 
 
@@ -457,8 +460,9 @@ namespace RainyDay {
 			m_immediateContext->OMSetDepthStencilState(m_depthStencilStateForNormalModel, 0);
 			m_immediateContext->OMSetBlendState(0, 0, 0xffffffff);
 
+			model->GetShader()->Reset(m_device, m_immediateContext);
 			SetBuffers(model, deltaTime);
-			m_colorTech->GetPassByIndex(0)->Apply(0, m_immediateContext);
+			//m_colorTech->GetPassByIndex(0)->Apply(0, m_immediateContext);
 
 			m_immediateContext->DrawIndexed(model->indexSize(), 0, 0);
 		}
@@ -468,8 +472,9 @@ namespace RainyDay {
 			m_immediateContext->OMSetDepthStencilState(m_depthStencilStateForTransparentModel, 0);
 			m_immediateContext->OMSetBlendState(m_blendState, 0, 0xffffffff);
 
+			model->GetShader()->Reset(m_device, m_immediateContext);
 			SetBuffers(model, deltaTime);
-			m_colorTech->GetPassByIndex(1)->Apply(0, m_immediateContext);
+			//m_colorTech->GetPassByIndex(1)->Apply(0, m_immediateContext);
 
 			m_immediateContext->DrawIndexed(model->indexSize(), 0, 0);
 		}
@@ -479,8 +484,9 @@ namespace RainyDay {
 			m_immediateContext->OMSetDepthStencilState(m_depthStencilStateForUI, 0);
 			m_immediateContext->OMSetBlendState(m_blendState, 0, 0xffffffff);
 
+			UI->GetShader()->Reset(m_device, m_immediateContext);
 			SetUIBuffers(UI, deltaTime);
-			m_colorTech->GetPassByIndex(2)->Apply(0, m_immediateContext);
+			//m_colorTech->GetPassByIndex(2)->Apply(0, m_immediateContext);
 
 			m_immediateContext->DrawIndexed(UI->indexSize(), 0, 0);
 		}
@@ -536,7 +542,7 @@ namespace RainyDay {
 		if (m_solidRS) m_solidRS->Release();
 		if (m_wireFrameRS) m_wireFrameRS->Release();
 		if (m_samplerState) m_samplerState->Release();
-		if (m_effect) m_effect->Release();
+		//if (m_effect) m_effect->Release();
 
 		for (auto texture : m_textureRVList)
 		{
@@ -547,7 +553,7 @@ namespace RainyDay {
 
 	void Renderer::SetLightDirection(XMFLOAT4 lightDirection)
 	{
-		m_lightDirection = lightDirection;
+		//this->lightDirection = lightDirection;
 	}
 
 }

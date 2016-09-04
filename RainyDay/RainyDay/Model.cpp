@@ -8,13 +8,14 @@
 #include "Vertex.h"
 #include "WICTextureLoader.h"
 #include "ConstVars.h"
+#include "DefaultShader.h"
 
 namespace RainyDay {
 
 	Model::Model() : m_indexBuffer(nullptr), m_vertexBuffer(nullptr), m_textureName(nullptr),
 		m_vertexIsChanged(true)
 	{
-
+		m_shader = new DefaultShader();
 	}
 	Model::~Model()
 	{

@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "Object.h"
 #include "Vertex.h"
+#include "Shader.h"
 
 namespace RainyDay {
 
@@ -18,6 +19,8 @@ namespace RainyDay {
 	public:
 		Model();
 		virtual ~Model();
+		bool IsUI() { return m_isUI; };
+
 		static PreLoadedData* PreLoadFromFile(std::string filename);
 		void LoadFromPreLoadedData(PreLoadedData* data);
 		void LoadFromFile(std::string filename);
@@ -26,6 +29,8 @@ namespace RainyDay {
 		ID3D11Buffer*& GetVB() { return m_vertexBuffer; };
 		ID3D11Buffer*& GetIB() { return m_indexBuffer; };
 		int GetTransparency() { return m_transparency; };
+		Shader* GetShader() { return m_shader; };
+		void SetShader(Shader* shader) { m_shader = shader; };
 		void SetTransParency(float alpha);
 
 		void ReleaseVB();
@@ -45,13 +50,6 @@ namespace RainyDay {
 		inline DirectX::XMFLOAT4 GetColor() { return m_rgba; };
 		WCHAR*& GetTextureName() { return m_textureName; };
 
-		enum ModelType
-		{
-			Cube,
-			Rectangle,
-			Polygon,
-			UI,
-		};
 
 	protected:
 		void AddRectangle(Vertex& v1, Vertex& v2, Vertex& v3, Vertex& v4);
@@ -61,9 +59,10 @@ namespace RainyDay {
 
 		ID3D11Buffer*				m_vertexBuffer = nullptr;
 		ID3D11Buffer*				m_indexBuffer = nullptr;
-		std::vector<Vertex>		m_vertices;
+		std::vector<Vertex>			m_vertices;
 		std::vector<WORD>			m_indices;
 		int							m_transparency = 0;
-
+		Shader*						m_shader = nullptr;
+		bool						m_isUI = false;
 	};
 }

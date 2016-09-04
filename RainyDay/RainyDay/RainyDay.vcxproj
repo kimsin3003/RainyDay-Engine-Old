@@ -104,7 +104,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>DLL_EXPORTS;_DEBUG;_WINDOWS;_USRDLL;RAINYDAY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PrecompiledHeaderFile>rainyday.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -164,6 +164,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ConstVars.h" />
+    <ClInclude Include="DefaultShader.h" />
     <ClInclude Include="InputClass.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Shader.h" />
@@ -181,6 +182,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ConstVars.cpp" />
+    <ClCompile Include="DefaultShader.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -217,7 +219,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="MyShader.fx">
+    <FxCompile Include="DefaultShader.fx">
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
