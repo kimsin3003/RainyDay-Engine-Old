@@ -4,23 +4,12 @@
 
 namespace RainyDay {
 
+
 	class DLL_API Object
 	{
 	public:
 		Object();
 		virtual ~Object();
-
-
-		struct Vector3 {
-			float x;
-			float y;
-			float z;
-		};
-
-		struct Vector2 {
-			float x;
-			float y;
-		};
 
 		virtual void Play(float dt);
 		virtual void AddLinearMoveToScheduler(float x, float y, float z, float time);

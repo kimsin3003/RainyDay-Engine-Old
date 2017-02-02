@@ -3,16 +3,45 @@
 #include <vector>
 #include "Camera.h"
 #include "Object.h"
-#include "Vertex.h"
 #include "Shader.h"
 
 namespace RainyDay {
 
+	struct  Vertex
+	{
+	public:
+		XMFLOAT3	pos;
+		XMFLOAT4	color;
+
+		XMFLOAT3	normal;
+		XMFLOAT2	tex;
+
+		bool Vertex::operator==(const Vertex& rv)
+		{
+			return (pos.x == rv.pos.x && pos.y == rv.pos.y && pos.z == rv.pos.z)
+				&& (color.x == rv.color.x && color.y == rv.color.y && color.z == rv.color.z && color.w == rv.color.w)
+				&& (normal.x == rv.normal.x && normal.y == rv.normal.y && normal.z == rv.normal.z)
+				&& (tex.x == rv.tex.x && tex.y == rv.tex.y);
+		}
+
+
+		void Vertex::operator=(const Vertex& rv)
+		{
+
+			pos = rv.pos;
+			color = rv.color;
+			normal = rv.normal;
+			tex = rv.tex;
+		}
+	};
+
 	class DLL_API PreLoadedData {
 	public:
 		std::vector<Vertex>		vertices;
-		std::vector<WORD>			indices;
+		std::vector<WORD>		indices;
 	};
+
+	
 
 	class DLL_API Model : public Object
 	{

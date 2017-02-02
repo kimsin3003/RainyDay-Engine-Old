@@ -1,7 +1,6 @@
 #include "rainyday.h"
 #include <fstream>
 #include "UIModel.h"
-#include "Vertex.h"
 #include "ConstVars.h"
 
 namespace RainyDay {

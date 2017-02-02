@@ -5,7 +5,6 @@
 #include <fstream>
 #include <vector>
 #include "Model.h"
-#include "Vertex.h"
 #include "WICTextureLoader.h"
 #include "ConstVars.h"
 #include "DefaultShader.h"

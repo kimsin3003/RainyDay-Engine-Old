@@ -63,9 +63,6 @@
     <ClInclude Include="Model.h">
       <Filter>소스 파일\Model</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>소스 파일\Model</Filter>
-    </ClInclude>
     <ClInclude Include="Time.h">
       <Filter>소스 파일\Framework</Filter>
     </ClInclude>
@@ -111,9 +108,6 @@
       <Filter>소스 파일\Framework</Filter>
     </ClCompile>
     <ClCompile Include="Model.cpp">
-      <Filter>소스 파일\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="Vertex.cpp">
       <Filter>소스 파일\Model</Filter>
     </ClCompile>
     <ClCompile Include="Time.cpp">

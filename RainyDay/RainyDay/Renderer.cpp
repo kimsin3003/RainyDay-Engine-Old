@@ -5,7 +5,6 @@
 #include <d3dcompiler.h>
 #include <iostream>
 #include "Renderer.h"
-#include "Vertex.h"
 #include "WICTextureLoader.h"
 #include "ConstVars.h"
 #include "UIModel.h"

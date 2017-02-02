@@ -20,5 +20,23 @@ namespace RainyDay
 #define DLL_API __declspec( dllimport )
 #endif
 
+	DLL_API struct Vector4 {
+		float x;
+		float y;
+		float z;
+		float w;
+	};
+
+	DLL_API struct Vector3 {
+		float x;
+		float y;
+		float z;
+	};
+
+	DLL_API struct Vector2 {
+		float x;
+		float y;
+	};
+
 }
 

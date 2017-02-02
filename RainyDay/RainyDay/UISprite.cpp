@@ -1,6 +1,5 @@
 #include "rainyday.h"
 #include "UISprite.h"
-#include "Vertex.h"
 
 namespace RainyDay {
 	const float UISprite::LETTERWIDTH = 0.10f;
